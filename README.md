@@ -23,7 +23,9 @@
 
 ## 🚧 Projeto
 
-Live Preview:
+Live Preview: https://live-twitch-github-blog.vercel.app/
+
+Figma: https://www.figma.com/file/qvpkgNLDB0zcUO7Q96PQgg/GitHub-Blog-(Community)
 
 ## :memo: Licença
 
