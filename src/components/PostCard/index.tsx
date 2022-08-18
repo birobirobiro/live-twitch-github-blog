@@ -1,7 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
-import { FaGithub, FaExternalLinkAlt, FaCalendar, FaComment } from 'react-icons/fa'
+import Link from "next/link";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaCalendar,
+  FaComment,
+  FaChevronLeft,
+} from "react-icons/fa";
 
-import { UserCardContainer, UserCardContent, UserCardInfo, UserCardNameContainer } from "./style";
+import {
+  UserCardContainer,
+  UserCardContent,
+  UserCardInfo,
+  UserCardNameContainer,
+} from "./style";
 
 interface PostCardProps {
   title: string;
@@ -11,17 +22,31 @@ interface PostCardProps {
   username: string;
 }
 
-export function PostCard({ title, url, comments, date, username }: PostCardProps) {
+export function PostCard({
+  title,
+  url,
+  comments,
+  date,
+  username,
+}: PostCardProps) {
   return (
     <UserCardContainer>
       <UserCardContent>
         <UserCardNameContainer>
-          <h2>{title}</h2>
+          <Link href="/">
+            <a>
+              <FaChevronLeft color="#3294F8" size="12px" />
+              Voltar
+            </a>
+          </Link>
 
-          <a href={url} target="_blank" rel="noopener noreferrer">Github
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            Ver no Github
             <FaExternalLinkAlt color="#3294F8" size="12px" />
           </a>
         </UserCardNameContainer>
+
+        <h2>{title}</h2>
 
         <UserCardInfo>
           <span>
@@ -44,5 +69,5 @@ export function PostCard({ title, url, comments, date, username }: PostCardProps
         </UserCardInfo>
       </UserCardContent>
     </UserCardContainer>
-  )
+  );
 }
