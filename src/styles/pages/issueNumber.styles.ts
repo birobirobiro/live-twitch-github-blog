@@ -5,6 +5,8 @@ export const PostContent = styled("div", {
 
   ".react-markdown": {
     whiteSpace: "pre-wrap",
+    lineHeight: 1.6,
+    hyphens: "auto",
   },
 
   img: {
@@ -12,7 +14,7 @@ export const PostContent = styled("div", {
   },
 
   ul: {
-    paddingLeft: "20px",
+    listStylePosition: "inside",
   },
 
   a: {

@@ -23,7 +23,12 @@ export const PostListItem = styled("article", {
     maxWidth: "283px",
   },
 
+  span: {
+    textAlign: "right",
+  },
+
   p: {
+    lineHeight: 1.5,
     marginTop: "20px",
     overflow: "hidden",
     "-webkit-line-clamp": 4,

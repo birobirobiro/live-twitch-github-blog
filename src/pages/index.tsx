@@ -1,17 +1,14 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import debounce from 'lodash.debounce'
-import type { NextPage } from 'next'
-import { useState } from 'react'
-import { Header } from '../components/Header'
-import { Layout } from '../components/Layout'
-import { PostList } from '../components/PostList'
-import { UserCard } from '../components/UserCard'
-import useDebounce from '../hooks/useDebounce'
-import { InputContainer, InputHeader } from '../styles/pages/home.styles'
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
+import { Layout } from "../components/Layout";
+import { PostList } from "../components/PostList";
+import { UserCard } from "../components/UserCard";
+import useDebounce from "../hooks/useDebounce";
+import { InputContainer, InputHeader } from "../styles/pages/home.styles";
 
-const GITHUB_USERNAME = "birobirobiro"
-const GITHUB_REPOSITORY = "birobirobiro/live-twitch-github-blog"
+const GITHUB_USERNAME = "birobirobiro";
+const GITHUB_REPOSITORY = "birobirobiro/live-twitch-github-blog";
 
 interface User {
   name: string;
@@ -28,16 +25,18 @@ interface HomeProps {
 }
 
 export default function Home({ user }: HomeProps) {
-  const [search, setSearch] = useState('')
-  const debouncedSearch = useDebounce(search)
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search);
   async function fetchPosts(q: string) {
     const { data } = await axios.get(`https://api.github.com/search/issues`, {
       params: { q: `repo:${GITHUB_REPOSITORY} ${q}` },
-    })
-    return data
+    });
+    return data;
   }
 
-  const { data } = useQuery(["post", debouncedSearch], () => fetchPosts(debouncedSearch))
+  const { data } = useQuery(["post", debouncedSearch], () =>
+    fetchPosts(debouncedSearch)
+  );
 
   return (
     <Layout>
@@ -51,25 +50,23 @@ export default function Home({ user }: HomeProps) {
 
         <input
           type="text"
-          placeholder='Buscar conteúdo'
+          placeholder="Buscar conteúdo"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          autoComplete='off'
-          name='search'
+          autoComplete="off"
+          name="search"
         />
-
-
-
       </InputContainer>
 
       <PostList posts={data?.items} />
     </Layout>
-  )
+  );
 }
 
-
 export async function getStaticProps() {
-  const { data } = await axios.get(`https://api.github.com/users/${GITHUB_USERNAME}`)
+  const { data } = await axios.get(
+    `https://api.github.com/users/${GITHUB_USERNAME}`
+  );
 
   const user = {
     name: data.name,
@@ -79,12 +76,12 @@ export async function getStaticProps() {
     url: data.html_url,
     avatar: data.avatar_url,
     login: data.login,
-  }
+  };
 
   return {
     props: {
-      user
+      user,
     },
-    revalidate: 60 * 60 * 3 // 3 hours
-  }
+    revalidate: 60 * 60 * 3, // 3 hours
+  };
 }

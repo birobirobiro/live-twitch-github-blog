@@ -12,8 +12,12 @@ export const InputContainer = styled("div", {
     borderRadius: "6px",
     padding: "12px 16px",
     fontSize: "16px",
-    color: "$labelInput",
+    color: "$text",
     outline: 0,
+
+    "&::placeholder": {
+      color: "$labelInput",
+    },
 
     "&:focus": {
       border: "1px solid $brand",
