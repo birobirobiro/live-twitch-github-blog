@@ -1,9 +1,17 @@
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import debounce from 'lodash.debounce'
 import type { NextPage } from 'next'
+import { useState } from 'react'
 import { Header } from '../components/Header'
+import { Layout } from '../components/Layout'
+import { PostList } from '../components/PostList'
 import { UserCard } from '../components/UserCard'
+import useDebounce from '../hooks/useDebounce'
+import { InputContainer, InputHeader } from '../styles/pages/home.styles'
 
 const GITHUB_USERNAME = "birobirobiro"
+const GITHUB_REPOSITORY = "birobirobiro/live-twitch-github-blog"
 
 interface User {
   name: string;
@@ -20,11 +28,42 @@ interface HomeProps {
 }
 
 export default function Home({ user }: HomeProps) {
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search)
+  async function fetchPosts(q: string) {
+    const { data } = await axios.get(`https://api.github.com/search/issues`, {
+      params: { q: `repo:${GITHUB_REPOSITORY} ${q}` },
+    })
+    return data
+  }
+
+  const { data } = useQuery(["post", debouncedSearch], () => fetchPosts(debouncedSearch))
+
   return (
-    <div>
-      <Header />
+    <Layout>
       <UserCard user={user} />
-    </div>
+      <InputContainer>
+        <InputHeader>
+          <h3>Publicações</h3>
+
+          <span>{data?.total_count} publicações</span>
+        </InputHeader>
+
+        <input
+          type="text"
+          placeholder='Buscar conteúdo'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          autoComplete='off'
+          name='search'
+        />
+
+
+
+      </InputContainer>
+
+      <PostList posts={data?.items} />
+    </Layout>
   )
 }
 

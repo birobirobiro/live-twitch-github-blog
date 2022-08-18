@@ -10,6 +10,10 @@ export const { styled, globalCss, getCssText } = createStitches({
       background: "#071422",
       brand: "#3294F8",
       span: "#7B96B2",
+      subtitle: "#C4D4E3",
+      borderInput: "#1C2F41",
+      backgroundInput: "#040F1A",
+      labelInput: "#3A536B",
     },
     fonts: {
       default: "Nunito",
