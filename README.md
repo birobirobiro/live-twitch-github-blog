@@ -13,7 +13,7 @@
   
   <img src="https://img.shields.io/github/forks/birobirobiro/live-twitch-github-blog?label=forks&message=MIT&color=112131&labelColor=3294F8" alt="Forks">
 
-  <img src="https://img.shields.io/github/stars/birobirobiro/live-twitch-github-blog=stars&message=MIT&color=112131&labelColor=3294F8 " alt="Stars">
+  <img src="https://img.shields.io/github/stars/birobirobiro/live-twitch-github-blog?=stars&message=MIT&color=112131&labelColor=3294F8 " alt="Stars">
 </p>
 
 ## 🚀 Tecnologias
