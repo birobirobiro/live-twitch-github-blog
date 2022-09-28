@@ -34,20 +34,17 @@ export const UserCardNameContainer = styled("div", {
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
-  marginBottom: "8px",
+  marginBottom: "20px",
 
   a: {
     display: "flex",
     alignItems: "center",
+    gap: "8px",
     color: "$brand",
     textDecoration: "none",
     textTransform: "uppercase",
     fontWeight: "bold",
     fontSize: "12px",
-
-    svg: {
-      marginLeft: "8px",
-    },
   },
 });
 
@@ -56,6 +53,7 @@ export const UserCardInfo = styled("div", {
   alignItems: "center",
   width: "100%",
   gap: "24px",
+  marginTop: "8px",
 
   span: {
     display: "flex",
